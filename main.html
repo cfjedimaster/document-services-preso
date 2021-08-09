@@ -2,7 +2,9 @@
 <head>
 <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css">
 <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/black.css">
-<title>Adobe PDF Embed and Services</title>
+<link rel="stylesheet" href="/node_modules/reveal.js/plugin/highlight/monokai.css">
+
+<title>Adobe Document Services</title>
 <style>
 .twocol {
 	display: grid;
@@ -16,7 +18,7 @@
 	<div class="slides">
 
 		<section>
-			<h1>Adobe PDF Embed and Services</h1>
+			<h1>Adobe Document Services</h1>
 		</section>
 
 		<section>
@@ -32,7 +34,7 @@
 		<section>
 		<div class="twocol">
 		<div>
-		<h2>read.me</h2>
+v		<h2>read.me</h2>
 		<ul>
 		<li>Raymond Camden</li>
 		<li>Senior Developer Evangelist for Adobe</li>
@@ -46,19 +48,175 @@
 		</div>
 		</section>
 
+		<section>
+		<h2>Document Services</h2>
+		<ul>
+		<li class="fragment">Viewing (plus more) PDFs on the Web</li>
+		<ul><li class="fragment">Free!</li></ul>
+		<li class="fragment">Manipulating (slice, dice, etc) PDFs on the Server</li>
+		<ul><li class="fragment">Not Free! (but free trial!)</li></ul>
+		</ul>
+		</section>
+
+		<section>
+		<h2>Adobe PDF Embed</h2>
+		</section>
+
+		<section>
+		<h2>Adobe PDF Embed</h2>
+		<ul>
+		<li class="fragment">JavaScript solution for viewing PDFs on the Web</li>
+		<li class="fragment">Provides much more control over the experience</li>
+		<li class="fragment">Multiple viewing types</li>
+		<li class="fragment">Multiple hooks into the document</li>
+		<li class="fragment">Free</li>
+		</ul>
+		</section>
+
+		<section id="pdfembed1">
+			<h2>Demo</h2>
+			<div id="pdfembed_div1" class="r-stretch"></div>
+		</section>
+
+		<section>
+		<h2>How's It Done...</h2>
+		</section>
+
+		<section>
+		<h2>Steps</h2>
+		<ol>
+		<li class="fragment">Get a key</li>
+		</ol>
+		</section>
+
+		<section>
+		<img src="img/embed_home.png">
+		<a href="https://www.adobe.io/apis/documentcloud/dcsdk/pdf-embed.html" target="_new">www.adobe.io/apis/documentcloud/dcsdk/pdf-embed.html</a>
+		</section>
+
+		<section>
+		<img src="img/console_home.png">
+		<a href="https://console.adobe.io" target="_new">console.adobe.io</a>
+		</section>
+
+		<section>
+			<h1>Keys are HOST specific!</h1>
+		</section>
+
+
+		<section>
+		<h2>Steps</h2>
+		<ol>
+		<li>Get a key</li>
+		<li class="fragment">Load the library</li>
+		</ol>
+		</section>
+
+		<section>
+		<pre><code class="html" data-trim>
+		&lt;script src="https://documentcloud.adobe.com/view-sdk/main.js"&gt;
+		&lt;/script&gt;
+		</code></pre>
+		</section>
+
+		<section>
+		<h2>Steps</h2>
+		<ol>
+		<li>Get a key</li>
+		<li>Load the library</li>
+		<li class="fragment">Check for library load</li>
+		</ol>
+		</section>
+
+		<section>
+		<h2>Option 1</h2>
+		<pre><code class="javascript" data-trim>
+document.addEventListener("adobe_dc_view_sdk.ready", function() {
+	// stuff here
+});
+		</code></pre>
+		</section>
+
+		<section>
+		<h2>Option 2 (Use This!)</h2>
+		<pre><code class="javascript" data-trim>
+if(window.AdobeDC) displayPDF();
+else document.addEventListener("adobe_dc_view_sdk.ready", 
+	() => displayPDF());
+		</code></pre>
+		</section>
+
+		<section>
+		<h2>Steps</h2>
+		<ol>
+		<li>Get a key</li>
+		<li>Load the library</li>
+		<li>Check for library load</li>
+		<li class="fragment">Initialize and load PDF</li>
+		</ol>
+		</section>
+
+		<section>
+		<pre><code class="javascript" data-trim>
+// ADOBE_KEY is your credential
+// mypdf is the ID of a div in your HTML
+let adobeDCView = new AdobeDC.View({
+	clientId: ADOBE_KEY, 
+	divId: "mypdf" 
+});
+
+adobeDCView.previewFile({
+  content:{ location: { url: "pdfs/cat.pdf" }},
+  metaData:{ fileName: "cat.pdf" }
+});
+		</code></pre>
+		</section>
+
+		<section>
+			<h3><a href="/demos/embed/test1.html" target="_new">Demo</h3>
+		</section>
+
 	</div>
 </div>
 
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
 <script src="node_modules/reveal.js/dist/reveal.js"></script>
+<script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
 <script>
-let deck = new Reveal({
-   plugins: [  ]
-})
-deck.initialize({
-	progress:true,
-	slideNumber:"c/t",
-	hash:true
-});
+const ADOBE_KEY = '9861538238544ff39d37c6841344b78d';
+
+if (!window.AdobeDC) {
+	//we delay init Reveal till PDF Embed is ready
+	document.addEventListener("adobe_dc_view_sdk.ready", () => init());
+}
+
+function init() {
+
+	let deck = new Reveal({
+	plugins: [  ]
+	})
+	deck.initialize({
+		progress:true,
+		slideNumber:"c/t",
+		hash:true,
+		plugins: [ RevealHighlight ]
+	});
+
+	deck.on('slidechanged', event => {
+		if(event.currentSlide.id && event.currentSlide.id === 'pdfembed1') {
+			showPDF('/pdfs/cat.pdf', 'pdfembed_div1');
+		}
+	});
+
+}
+function showPDF(pdf, divid) {
+	let filename = pdf.split('/').pop();
+	let adobeDCView = new AdobeDC.View({clientId: ADOBE_KEY, divId: divid });
+	adobeDCView.previewFile({
+	content:{location: {url:pdf}},
+	metaData:{fileName: filename}
+	});
+}
 </script>
 </head>
 </html>

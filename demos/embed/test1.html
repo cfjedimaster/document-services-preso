@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<style>
+body {
+	background-color: green;
+	padding: 30px;
+}
+
+#pdfDisplay {
+	height: 600px;
+	width: 80%;
+}
+</style>
+</head>
+
+<body>
+
+<h2>PDF Embed Demo</h2>
+
+<p>
+This is a regular HTML page with some regular HTML stuff in it.
+</p>
+
+<div id="pdfDisplay"></div>
+
+<p>
+I hope you enjoyed viewing the awesome cat-related PDF above. All PDFs should have cats in them.
+</p>
+
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script>
+const ADOBE_KEY = '9861538238544ff39d37c6841344b78d';
+
+if (window.AdobeDC) displayPDF();
+else {
+  document.addEventListener("adobe_dc_view_sdk.ready", () => displayPDF());
+}
+
+function displayPDF() {
+	let adobeDCView = new AdobeDC.View({clientId: ADOBE_KEY, divId: "pdfDisplay" });
+	adobeDCView.previewFile({
+	content:{location: {url: "/pdfs/cat.pdf"}},
+	metaData:{fileName: "cat.pdf"}
+	});
+}
+</script>
+</body>
+</html>
