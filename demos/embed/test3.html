@@ -1,5 +1,5 @@
 <!--
-Shows basic embed, no customization
+Demos UI customization
 -->
 <html>
 
@@ -27,9 +27,6 @@ This is a regular HTML page with some regular HTML stuff in it.
 
 <div id="pdfDisplay"></div>
 
-<p>
-I hope you enjoyed viewing the awesome cat-related PDF above. All PDFs should have cats in them.
-</p>
 
 <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
 <script>
@@ -45,6 +42,11 @@ function displayPDF() {
 	adobeDCView.previewFile({
 	content:{location: {url: "/pdfs/cat.pdf"}},
 	metaData:{fileName: "cat.pdf"}
+	}, { 
+		showDownloadPDF: false,
+		showPrintPDF: false,
+		showAnnotationTools: false,
+		showLeftHandPanel: false	
 	});
 }
 </script>

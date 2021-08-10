@@ -1,5 +1,5 @@
 <!--
-Shows basic embed, no customization
+Demos embedMode functionality
 -->
 <html>
 
@@ -28,7 +28,8 @@ This is a regular HTML page with some regular HTML stuff in it.
 <div id="pdfDisplay"></div>
 
 <p>
-I hope you enjoyed viewing the awesome cat-related PDF above. All PDFs should have cats in them.
+View tests: <a href="?mode=FULL_WINDOW">Full Window (default)</a> ~ <a href="?mode=SIZED_CONTAINER">Sized Container</a> ~
+<a href="?mode=IN_LINE">In-Line</a> ~ <a href="?mode=LIGHT_BOX">Lightbox</a> (better <a href="https://codepen.io/cfjedimaster/pen/ZEeEBNX" target="_new">demo</a>)
 </p>
 
 <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -41,11 +42,16 @@ else {
 }
 
 function displayPDF() {
+	let mode = 'FULL_WINDOW';
+	if(document.location.search !== '' && document.location.search.indexOf('?mode=') === 0) {
+		mode = document.location.search.replace('?mode=','');
+
+	}
 	let adobeDCView = new AdobeDC.View({clientId: ADOBE_KEY, divId: "pdfDisplay" });
 	adobeDCView.previewFile({
 	content:{location: {url: "/pdfs/cat.pdf"}},
 	metaData:{fileName: "cat.pdf"}
-	});
+	}, { embedMode:mode });
 }
 </script>
 </body>

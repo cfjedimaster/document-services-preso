@@ -173,7 +173,87 @@ adobeDCView.previewFile({
 		</section>
 
 		<section>
-			<h3><a href="/demos/embed/test1.html" target="_new">Demo</h3>
+			<h3><a href="/demos/embed/test1.html" target="_new">Demo</a></h3>
+		</section>
+
+		<section>
+		<h2>Changing the View</h2>
+		<ul>
+		<li class="fragment">"Sized Container" (focused on one page at a time)</li>
+		<li class="fragment">"Full Window" (default, displays PDF in stream)</li>
+		<li class="fragment">"In-Line" (stretches the PDF length wise to show whole thing)</li>
+		<li class="fragment">"Lightbox" (modal window)</li>
+		</ul>
+		</section>
+	
+		<section>
+		<h2>Specify Mode</h2>
+		<pre><code class="javascript" data-trim>
+let adobeDCView = new AdobeDC.View({
+	clientId: ADOBE_KEY, divId: "mypdf" 
+});
+
+adobeDCView.previewFile({
+	content: { location: {url: "/pdfs/cat.pdf"} },
+    metaData: { fileName: "cat.pdf" }
+}, 
+{
+	embedMode: "IN_LINE"
+});	
+		</code></pre>
+		</section>
+
+		<section>
+			<h3><a href="/demos/embed/test2.html" target="_new">Demo</h3>
+		</section>
+
+		<section>
+		<h2>More Customization</h2>
+		<ul>
+		<li class="fragment">Show/Hide UI</li>
+		<li class="fragment">Disable Print/Save</li>
+		<li class="fragment">Disable annotations/comments</li>
+		<li class="fragment"><a href="https://opensource.adobe.com/pdfembed-sdk-docs/howtos_ui.html#" target="_new">UI customization docs</a></li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>Tweak UI</h2>
+		<pre><code class="javascript" data-trim>
+let adobeDCView = new AdobeDC.View({
+	clientId: ADOBE_KEY, divId: "mypdf" 
+});
+
+adobeDCView.previewFile({
+	content: { location: {url: "/pdfs/cat.pdf"} },
+    metaData: { fileName: "cat.pdf" }
+}, 
+{
+	showDownloadPDF: false,
+	showPrintPDF: false,
+	showAnnotationTools: false,
+	showLeftHandPanel: false
+});	
+		</code></pre>
+		</section>
+
+		<section>
+			<h3><a href="/demos/embed/test3.html" target="_new">Demo</a></h3>
+		</section>
+
+		<section>
+		<h2>Integrations and Events</h2>
+		<ul>
+		<li class="fragment">Get metadata</li>
+		<li class="fragment">Change pages, change zooms, do searches</li>
+		<li class="fragment">Annotation API</li>
+		<li class="fragment">Adobe Analytics</li>
+		<li class="fragment">Event support</li>
+		</ul>
+		</section>
+
+		<section>
+			<h3><a href="https://documentcloud.adobe.com/view-sdk-demo/index.html#/view/FULL_WINDOW/Bodea%20Brochure.pdf" target="_new">Online Sandbox</a></h3>
 		</section>
 
 	</div>
