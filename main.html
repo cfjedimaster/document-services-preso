@@ -34,7 +34,7 @@
 		<section>
 		<div class="twocol">
 		<div>
-v		<h2>read.me</h2>
+		<h2>read.me</h2>
 		<ul>
 		<li>Raymond Camden</li>
 		<li>Senior Developer Evangelist for Adobe</li>
@@ -255,6 +255,88 @@ adobeDCView.previewFile({
 		<section>
 			<h3><a href="https://documentcloud.adobe.com/view-sdk-demo/index.html#/view/FULL_WINDOW/Bodea%20Brochure.pdf" target="_new">Online Sandbox</a></h3>
 		</section>
+
+		<section>
+			<h2>Off to Server Land!</h2>
+		</section>
+
+		<section>
+		<h2>APIs</h2>
+		<ul>
+		<li class="fragment">Three core services</li>
+		<li class="fragment">SDKs for Java, Node, .Net, and Python<sup>*</sup></li>
+		<li class="fragment">REST APIs</li>
+		<li class="fragment">Not free, 1K calls over 6 months</li>
+		<li class="fragment">Credentials required (2 parts)</li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>Features</h2>
+		<ul>
+		<li class="fragment">PDF "Services"</li>
+		<li class="fragment">Document Generation</li>
+		<li class="fragment">PDF Extract</li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>PDF Services</h2>
+		<ul>
+		<li class="fragment">Formally known as PDF Tools</li>
+		<li class="fragment">Everything related to PDF creation and manipulation</li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>PDF Services</h2>
+		<ul>
+		<li class="fragment">Create a PDF from Word, Powerpoint, Excel, text, images, static and dynamic HTML</li>
+		<li class="fragment">Export a PDF to Office, text, or images</li>
+		<li class="fragment">Combine PDFs (or specific pages) into one</li>
+		<li class="fragment">OCR a PDF</li>
+		<li class="fragment">Compress and Linearize a PDF</li>
+		<li class="fragment">Add a password or lock permissions (like print)</li>
+		<li class="fragment">Insert, replace, shift around, rotate, and remove pages</li>
+		<li class="fragment">Split a PDF by number of pages, ranges, or file count</li>
+		</ul>
+		</section>
+
+		<section>
+			<h2>General Pseudo-Code Flow</h2>
+			<pre><code class="text" data-trim>
+make a credentials object
+create an execution context specific to your operation 
+	(merge pdf, ocr pdf, etc)
+set your input
+execute
+save result
+			</code></pre>
+		</section>
+
+		<section>
+		<pre><code class="javascript r-stretch" data-trim>
+const credentials = PDFToolsSdk.Credentials
+	.serviceAccountCredentialsBuilder()
+	.fromFile('./pdftools-api-credentials.json')
+	.build();
+
+const executionContext = 
+	PDFServicesSdk.ExecutionContext.create(credentials);
+const ocrOperation = PDFServicesSdk.OCR.Operation.createNew();
+
+// Set operation input from a source file.
+const input = 
+	PDFServicesSdk.FileRef.createFromLocalFile('ocrInput.pdf', 
+	PDFServicesSdk.OCR.SupportedMediaTypes.pdf );
+ocrOperation.setInput(input);
+
+// Execute the operation and save the result.
+ocrOperation.execute(executionContext)
+  .then(result => result.saveAsFile('ocrOutput.pdf'));
+		</code></pre>
+		</section>
+
 
 	</div>
 </div>
