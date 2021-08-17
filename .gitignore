@@ -1,2 +1,4 @@
 node_modules
 .vscode
+private.key
+pdftools-api-credentials.json
