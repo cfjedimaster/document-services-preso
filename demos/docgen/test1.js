@@ -9,9 +9,9 @@ if(fs.existsSync(outputFile)) fs.unlinkSync(outputFile);
 
 // Initial setup, create credentials instance.
 const credentials =  PDFToolsSdk.Credentials
-      .serviceAccountCredentialsBuilder()
-      .fromFile("pdftools-api-credentials.json")
-      .build();
+    .serviceAccountCredentialsBuilder()
+    .fromFile("pdftools-api-credentials.json")
+    .build();
 
 const data = {
 	name: 'Raymond Camden',
