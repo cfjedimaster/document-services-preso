@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/black.css">
 <link rel="stylesheet" href="/node_modules/reveal.js/plugin/highlight/monokai.css">
 
-<title>Adobe Document Services</title>
+<title>Building Awesome Document Workflows with APIs</title>
 <style>
 .twocol {
 	display: grid;
@@ -18,7 +18,7 @@
 	<div class="slides">
 
 		<section>
-			<h1>Adobe Document Services</h1>
+			<h2>Building Awesome Document Worklows with APIs</h2>
 		</section>
 
 		<section>
@@ -49,21 +49,55 @@
 		</section>
 
 		<section>
-		<h2>Document Services</h2>
+			<h2>The Problem</h2>
+		</section>
+
+		<section>
+			<h2>The Problem...</h2>
+			<ul>
+				<li class="fragment">Documents in different formats, qualities, etc</li>
+				<li class="fragment">PDFs in different qualities, etc</li>
+				<li class="fragment">Data that needs to become a document</li>
+				<li class="fragment">Need to create a process to convert, optimize, and save</li>
+				<li class="fragment">A way to view these documents online</li>
+			</ul>
+		</section>
+
+		<section>
+		<h2>The Solution</h2>
 		<ul>
-		<li class="fragment">Viewing (plus more) PDFs on the Web</li>
-		<ul><li class="fragment">Free!</li></ul>
-		<li class="fragment">Manipulating (slice, dice, etc) PDFs on the Server</li>
-		<ul><li class="fragment">Not Free! (but free trial!)</li></ul>
+		<li class="fragment">APIs to convert into PDF (when necessary)</li>
+		<li class="fragment">APIs to check PDFs (OCR, etc)</li>
+		<li class="fragment">APIs to optimize PDFs</li>
+		<li class="fragment">Consistent viewing experience</li>
 		</ul>
 		</section>
 
 		<section>
-		<h2>Adobe PDF Embed</h2>
+		<h2>Adobe Document Services</h2>
+		<ul>
+		<li class="fragment">Manipulating (slice, dice, etc) PDFs on the Server</li>
+		<li class="fragment">Viewing (plus more) PDFs on the Web</li>
+		</ul>
 		</section>
 
 		<section>
-		<h2>Adobe PDF Embed</h2>
+		<h2>Adobe Document Services</h2>
+		<ul>
+		<li class="fragment">Adobe PDF Services API</li>
+		<li class="fragment">Adobe Document Generation API</li>
+		<li class="fragment">Adobe PDF Extract API</li>
+		<li class="fragment">Adobe PDF Embed API</li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>Adobe PDF Embed API</h2>
+		<img src="img/can_i_haz_pdf.jpg">
+		</section>
+
+		<section>
+		<h2>Adobe PDF Embed API</h2>
 		<ul>
 		<li class="fragment">JavaScript solution for viewing PDFs on the Web</li>
 		<li class="fragment">Provides much more control over the experience</li>
@@ -174,6 +208,7 @@ adobeDCView.previewFile({
 
 		<section>
 			<h3><a href="/demos/embed/test1.html" target="_new">Demo</a></h3>
+			<img src="img/cat_typing.gif">
 		</section>
 
 		<section>
@@ -205,6 +240,7 @@ adobeDCView.previewFile({
 
 		<section>
 			<h3><a href="/demos/embed/test2.html" target="_new">Demo</a></h3>
+			<img src="img/cat_typing.gif">
 		</section>
 
 		<section>
@@ -239,6 +275,7 @@ adobeDCView.previewFile({
 
 		<section>
 			<h3><a href="/demos/embed/test3.html" target="_new">Demo</a></h3>
+			<img src="img/cat_typing.gif">
 		</section>
 
 		<section>
@@ -261,12 +298,12 @@ adobeDCView.previewFile({
 		</section>
 
 		<section>
-		<h2>APIs</h2>
+		<h2>APIs (Why we're here, right?)</h2>
 		<ul>
 		<li class="fragment">Three core services</li>
 		<li class="fragment">SDKs for Java, Node, .Net, and Python<sup>*</sup></li>
 		<li class="fragment">REST APIs</li>
-		<li class="fragment">Not free, 1K calls over 6 months</li>
+		<li class="fragment">Not free (but trial for 1K calls over 6 months)</li>
 		<li class="fragment">Credentials required (2 parts)</li>
 		</ul>
 		</section>
@@ -274,23 +311,23 @@ adobeDCView.previewFile({
 		<section>
 		<h2>Features</h2>
 		<ul>
-		<li class="fragment">PDF "Services"</li>
-		<li class="fragment">Document Generation</li>
-		<li class="fragment">PDF Extract</li>
+		<li class="fragment">PDF "Services" API</li>
+		<li class="fragment">Document Generation API</li>
+		<li class="fragment">PDF Extract API</li>
 		</ul>
 		</section>
 
 		<section>
-		<h2>PDF Services</h2>
+		<h2>PDF Services API</h2>
 		<ul>
-		<li class="fragment">Formely known as PDF Tools</li>
+		<li class="fragment">Formely known as PDF Tools API</li>
 		<li class="fragment">Everything related to PDF creation and manipulation</li>
 		</ul>
 		</section>
 
 		<section>
-		<h2>PDF Services</h2>
-		<ul>
+		<h2>PDF Services API</h2>
+		<ul style="font-size:26px">
 		<li class="fragment">Create a PDF from Word, Powerpoint, Excel, text, images, static and dynamic HTML</li>
 		<li class="fragment">Export a PDF to Office, text, or images</li>
 		<li class="fragment">Combine PDFs (or specific pages) into one</li>
@@ -350,7 +387,7 @@ ocrOperation.execute(executionContext)
 		</section>
 
 		<section>
-		<h2>PDF Services (More)</h2>
+		<h2>PDF Services API (More)</h2>
 		<ul>
 		<li class="fragment">Remember: Used to be PDF Tools</li>
 		<li class="fragment">Credential info can be passed in via methods</li>
@@ -359,7 +396,7 @@ ocrOperation.execute(executionContext)
 		</section>
 
 		<section>
-		<h2>Document Generation</h2>
+		<h2>Document Generation API</h2>
 		<ul>
 		<li class="fragment">Uses a Word document as a template</li>
 		<li class="fragment">Our API takes the document + your data</li>
@@ -381,7 +418,7 @@ ocrOperation.execute(executionContext)
 		</section>
 
 		<section>
-		<h2>Document Generation</h2>
+		<h2>Document Generation API</h2>
 		<ul>
 		<li class="fragment">Uses JSONata (https://jsonata.org/)</li>
 		<li class="fragment">Supports looping, conditionals, formatting functions</li>
@@ -395,10 +432,11 @@ ocrOperation.execute(executionContext)
 			open Word, blank document
 			name, title, salary, show condition
 			</aside>
+			<img src="img/cat_typing.gif">
 		</section>
 
 		<section>
-		<h2>Document Generation</h2>
+		<h2>Document Generation API</h2>
 		<ul>
 		<li class="fragment"><a href="https://www.adobe.io/apis/documentcloud/dcsdk/doc-gen-api-template.html" target="_new">Bunch of templates</a></li>
 		<li class="fragment"><a href="https://documentcloud.adobe.com/dc-docgen-playground/index.html#/" target="_new">Cool online demo</a></li>
@@ -421,6 +459,14 @@ ocrOperation.execute(executionContext)
 			<code>/demos/services/extract.js</code>
 			</p>
 		</section>
+
+		<!--
+		THoughts for here - 
+		Workflow examples from my blog
+		all pdfs to embed viewer
+		all documents to pdf then view
+
+		-->
 
 		<section>
 			<img src="img/over.jpeg">
