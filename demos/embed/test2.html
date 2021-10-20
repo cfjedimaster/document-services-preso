@@ -6,12 +6,16 @@ Demos embedMode functionality
 <head>
 <style>
 body {
-	background-color: green;
+	background-color: rgb(76, 197, 76);
 	padding: 30px;
 }
 
+a {
+	color: black;
+}
+
 #pdfDisplay {
-	height: 600px;
+	height: 500px;
 	width: 80%;
 }
 </style>
@@ -19,17 +23,13 @@ body {
 
 <body>
 
-<h2>PDF Embed Demo</h2>
-
-<p>
-This is a regular HTML page with some regular HTML stuff in it.
-</p>
+<h2>PDF Embed Mode Demo</h2>
 
 <div id="pdfDisplay"></div>
 
 <p>
 View tests: <a href="?mode=FULL_WINDOW">Full Window (default)</a> ~ <a href="?mode=SIZED_CONTAINER">Sized Container</a> ~
-<a href="?mode=IN_LINE">In-Line</a> ~ <a href="?mode=LIGHT_BOX">Lightbox</a> (better <a href="https://codepen.io/cfjedimaster/pen/ZEeEBNX" target="_new">demo</a>)
+<a href="?mode=IN_LINE">In-Line</a> ~ <a href="?mode=LIGHT_BOX">Lightbox</a> (better <a href="https://codepen.io/cfjedimaster/full/ZEeEBNX" target="_new">demo</a>)
 </p>
 
 <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
