@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>A PDF Embed Test</title>
+	<style>
+	body {
+		background-color: blanchedalmond;
+		font-family: Arial, Helvetica, sans-serif;
+		padding: 30px;
+	}
+
+	#pdfView {
+		width: 50%;
+	}
+	</style>
+</head>
+
+<body>
+
+<h1>A Regular HTML Page</h1>
+
+<p>
+Your awesome content of some sort. Look at the cool PDF below.
+</p>
+
+
+<!-- PDF here! -->
+<button id="showPDF" disabled>Show PDF</button>
+
+<p>
+More of your awesome content.
+</p>
+
+
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script>
+const ADOBE_KEY = '9861538238544ff39d37c6841344b78d';
+
+
+if(window.AdobeDC) enablePDF();
+else {
+  document.addEventListener("adobe_dc_view_sdk.ready", () => enablePDF());
+}
+
+function enablePDF() {
+  let btn = document.querySelector('#showPDF');
+  btn.addEventListener('click', () => displayPDF());
+  btn.disabled = false;
+}
+
+function displayPDF() {
+  let adobeDCView = new AdobeDC.View({clientId: ADOBE_KEY });
+  adobeDCView.previewFile({
+	content:{location: {url: "/pdfs/cat.pdf"}},
+    metaData:{fileName: "cat.pdf"}
+  }, 
+  {
+    embedMode: "LIGHT_BOX"
+  }); 
+}
+
+
+Resources
+</script>
+</body>
+</html>
