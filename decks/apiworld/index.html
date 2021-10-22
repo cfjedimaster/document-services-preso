@@ -1,8 +1,12 @@
 <html>
 <head>
-<link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css">
-<link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/black.css">
-<link rel="stylesheet" href="/node_modules/reveal.js/plugin/highlight/monokai.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="dist/reset.css">
+<link rel="stylesheet" href="dist/reveal.css">
+<link rel="stylesheet" href="dist/theme/black.css">
+<link rel="stylesheet" href="plugin/highlight/monokai.css">
 
 <title>Building Awesome Document Workflows with APIs</title>
 <style>
@@ -524,8 +528,10 @@ ocrOperation.execute(executionContext)
 </div>
 
 <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-<script src="node_modules/reveal.js/dist/reveal.js"></script>
-<script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
 <script>
 const ADOBE_KEY = '9861538238544ff39d37c6841344b78d';
 
@@ -543,6 +549,7 @@ function init() {
 		progress:true,
 		slideNumber:"c/t",
 		hash:true,
+		 pdfSeparateFragments: false ,
 		plugins: [ RevealHighlight ]
 	});
 
@@ -553,6 +560,7 @@ function init() {
 	});
 
 }
+
 function showPDF(pdf, divid) {
 	let filename = pdf.split('/').pop();
 	let adobeDCView = new AdobeDC.View({clientId: ADOBE_KEY, divId: divid });
@@ -561,6 +569,7 @@ function showPDF(pdf, divid) {
 	metaData:{fileName: filename}
 	});
 }
+		
 </script>
 </head>
 </html>
