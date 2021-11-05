@@ -274,9 +274,9 @@ adobeDCView.previewFile({
 		<section>
 		<h2>Features</h2>
 		<ul>
-		<li class="fragment">PDF Services</li>
-		<li class="fragment">Document Generation</li>
-		<li class="fragment">PDF Extract</li>
+		<li class="fragment">PDF Services API</li>
+		<li class="fragment">Document Generation API</li>
+		<li class="fragment">PDF Extract API</li>
 		</ul>
 		</section>
 
@@ -290,7 +290,7 @@ adobeDCView.previewFile({
 
 		<section>
 		<h2>PDF Services</h2>
-		<ul>
+		<ul style="font-size:26px">
 		<li class="fragment">Create a PDF from Word, Powerpoint, Excel, text, images, static and dynamic HTML</li>
 		<li class="fragment">Export a PDF to Office, text, or images</li>
 		<li class="fragment">Combine PDFs (or specific pages) into one</li>
@@ -450,8 +450,10 @@ ocrOperation.execute(executionContext)
 </div>
 
 <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-<script src="node_modules/reveal.js/dist/reveal.js"></script>
-<script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
 <script>
 const ADOBE_KEY = '9861538238544ff39d37c6841344b78d';
 
@@ -469,6 +471,7 @@ function init() {
 		progress:true,
 		slideNumber:"c/t",
 		hash:true,
+		 pdfSeparateFragments: false ,
 		plugins: [ RevealHighlight ]
 	});
 
@@ -479,6 +482,7 @@ function init() {
 	});
 
 }
+
 function showPDF(pdf, divid) {
 	let filename = pdf.split('/').pop();
 	let adobeDCView = new AdobeDC.View({clientId: ADOBE_KEY, divId: divid });
