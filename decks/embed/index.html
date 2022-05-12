@@ -1,0 +1,329 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Introduction to PDF Embed API</title>
+		<style>
+		.twocol {
+			display: grid;
+			grid-template-columns: 66% 33%;
+		}
+		</style>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>Introduction to PDF Embed</section>
+
+				<section>
+				<h2>AKA</h2>
+				</section>
+
+				<section  data-background-image="img/multi_colored_stars.gif">
+				<h1>
+				Super Ultimate PDF Display Control!<sup>*</sup>
+				</h1>
+
+				<p style="font-size="10px">
+				* Not approved by Adobe marketing...
+				</p>
+				</section>
+
+				<section>
+				<div class="twocol">
+				<div>
+				<h2>read.me</h2>
+				<ul>
+				<li>Raymond Camden</li>
+				<li>Senior Developer Evangelist for Adobe</li>
+				<li>raymondcamden.com</li>
+				<li>@raymondcamden (DMs are open!)</li>
+				</ul>
+				</div>
+				<div>
+				<img src="img/ray.jpg" style="max-width:80%">
+				</div>
+				</div>
+				</section>
+
+				<section>
+				<h2>Adobe PDF Embed</h2>
+				</section>
+
+				<section>
+				<h2>Adobe PDF Embed</h2>
+				<ul>
+				<li class="fragment">JavaScript solution for viewing PDFs on the Web</li>
+				<li class="fragment">Provides much more control over the experience</li>
+				<li class="fragment">Multiple viewing types</li>
+				<li class="fragment">Multiple hooks into the document</li>
+				<li class="fragment">Free</li>
+				</ul>
+				</section>
+
+				<section id="pdfembed1">
+					<h2>Demo</h2>
+					<div id="pdfembed_div1" class="r-stretch"></div>
+				</section>
+
+				<section>
+				<h2>How's It Done...</h2>
+				</section>
+
+				<section>
+				<h2>Steps</h2>
+				<ol>
+				<li class="fragment">Get a key</li>
+				</ol>
+				</section>
+
+				<section>
+				<img src="img/embed_home.png">
+				<a href="https://developer.adobe.com/document-services/apis/pdf-embed/" target="_new">developer.adobe.com/document-services/apis/pdf-embed/</a>
+				</section>
+
+				<section>
+				<img src="img/console_home.png">
+				<a href="https://developer.adobe.com/console/" target="_new">developer.adobe.com/console</a>
+				</section>
+
+				<section>
+					<h1>Keys are HOST specific!</h1>
+				</section>
+
+
+				<section>
+				<h2>Steps</h2>
+				<ol>
+				<li>Get a key</li>
+				<li class="fragment">Load the library</li>
+				</ol>
+				</section>
+
+				<section>
+				<pre><code class="html" data-trim>
+				&lt;script src="https://documentcloud.adobe.com/view-sdk/main.js"&gt;
+				&lt;/script&gt;
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Steps</h2>
+				<ol>
+				<li>Get a key</li>
+				<li>Load the library</li>
+				<li class="fragment">Check for library load</li>
+				</ol>
+				</section>
+
+				<section>
+				<h2>Option 1</h2>
+				<pre><code class="javascript" data-trim>
+		document.addEventListener("adobe_dc_view_sdk.ready", function() {
+			// stuff here
+		});
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Option 2 (Use This!)</h2>
+				<pre><code class="javascript" data-trim>
+		if(window.AdobeDC) displayPDF();
+		else document.addEventListener("adobe_dc_view_sdk.ready", 
+			() => displayPDF());
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Steps</h2>
+				<ol>
+				<li>Get a key</li>
+				<li>Load the library</li>
+				<li>Check for library load</li>
+				<li class="fragment">Initialize and load PDF</li>
+				</ol>
+				</section>
+
+				<section>
+				<pre><code class="javascript" data-trim>
+		// ADOBE_KEY is your credential
+		const ADOBE_KEY = "my keys are so special...";
+
+		let adobeDCView = new AdobeDC.View({
+			clientId: ADOBE_KEY, 
+			// mypdf is the ID of a div in your HTML
+			divId: "mypdf" 
+		});
+
+		adobeDCView.previewFile({
+			content: { location: { url: "pdfs/cat.pdf" }},
+			metaData: { fileName: "cat.pdf" }
+		});
+				</code></pre>
+				</section>
+
+				<section>
+					<h3><a href="/demos/embed/test1.html" target="_new">Demo</a></h3>
+				</section>
+
+				<section>
+				<h2>Changing the View</h2>
+				<ul>
+				<li class="fragment">"Sized Container" (focused on one page at a time)</li>
+				<li class="fragment">"Full Window" (default, displays PDF in stream)</li>
+				<li class="fragment">"In-Line" (stretches the PDF length wise to show whole thing)</li>
+				<li class="fragment">"Lightbox" (modal window)</li>
+				</ul>
+				</section>
+			
+				<section>
+				<h2>Specify Mode</h2>
+				<pre><code class="javascript" data-trim>
+		let adobeDCView = new AdobeDC.View({
+			clientId: ADOBE_KEY, divId: "mypdf" 
+		});
+
+		adobeDCView.previewFile({
+			content: { location: {url: "/pdfs/cat.pdf"} },
+			metaData: { fileName: "cat.pdf" }
+		}, 
+		{
+			embedMode: "IN_LINE"
+		});	
+				</code></pre>
+				</section>
+
+				<section>
+					<h3><a href="/demos/embed/test2.html" target="_new">Demo</a></h3>
+				</section>
+
+				<section>
+				<h2>More Customization</h2>
+				<ul>
+				<li class="fragment">Show/Hide UI</li>
+				<li class="fragment">Disable Print/Save</li>
+				<li class="fragment">Disable annotations/comments</li>
+				<li class="fragment"><a href="https://opensource.adobe.com/pdfembed-sdk-docs/howtos_ui.html#" target="_new">UI customization docs</a></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Tweak UI</h2>
+				<pre><code class="javascript" data-trim>
+		let adobeDCView = new AdobeDC.View({
+			clientId: ADOBE_KEY, divId: "mypdf" 
+		});
+
+		adobeDCView.previewFile({
+			content: { location: {url: "/pdfs/cat.pdf"} },
+			metaData: { fileName: "cat.pdf" }
+		}, 
+		{
+			showDownloadPDF: false,
+			showPrintPDF: false,
+			showAnnotationTools: false,
+			showLeftHandPanel: false
+		});	
+				</code></pre>
+				</section>
+
+				<section>
+					<h3><a href="/demos/embed/test3.html" target="_new">Demo</a></h3>
+				</section>
+
+				<section>
+				<h2>Integrations and Events</h2>
+				<ul>
+				<li class="fragment">Get metadata</li>
+				<li class="fragment">Change pages, change zooms, do searches</li>
+				<li class="fragment">Annotation API</li>
+				<li class="fragment">Adobe Analytics / Google Analytics / Custom</li>
+				<li class="fragment">Event support</li>
+				</ul>
+				</section>
+
+				<section>
+					<h3><a href="/demos/embed/event1.html" target="_new">Demo</a></h3>
+				</section>
+
+				<section>
+					<h3><a href="https://documentcloud.adobe.com/view-sdk-demo/index.html#/view/FULL_WINDOW/Bodea%20Brochure.pdf" target="_new">Online Sandbox</a></h3>
+				</section>
+
+				<section>
+				<h2>Resources</h2>
+				<ul>
+				<li class="fragment"><a href="https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/" target="_new">Docs</a></li>
+				<li class="fragment"><a href="https://community.adobe.com/t5/document-services-apis/bd-p/Document-Cloud-SDK" target="_new">Support Forum</a></li>
+				<li class="fragment">StackOverflow: <a href="https://stackoverflow.com/questions/tagged/adobe-embed-api" target="_new">adobe-embed-api</a></li>
+				<li class="fragment"><a href="https://medium.com/adobetech/tagged/adobe-document-cloud" target="_new">Blog</a></li>
+				<li class="fragment"><a href="https://adobe.com/go/papercuts" target="_new">Papercuts</a></li>
+				</ul>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<img src="img/cat_qa.png">
+				</section>
+
+
+			</div>
+		</div>
+
+		<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+		const ADOBE_KEY = '9861538238544ff39d37c6841344b78d';
+
+		if (!window.AdobeDC) {
+			//we delay init Reveal till PDF Embed is ready
+			document.addEventListener("adobe_dc_view_sdk.ready", () => init());
+		}
+
+		function init() {
+
+			let deck = new Reveal({
+			plugins: [  ]
+			})
+			deck.initialize({
+				progress:true,
+				slideNumber:"c/t",
+				hash:true,
+				pdfSeparateFragments: false ,
+				plugins: [ RevealHighlight ]
+			});
+
+			deck.on('slidechanged', event => {
+				if(event.currentSlide.id && event.currentSlide.id === 'pdfembed1') {
+					showPDF('/pdfs/cat.pdf', 'pdfembed_div1');
+				}
+			});
+
+		}
+
+		function showPDF(pdf, divid) {
+			let filename = pdf.split('/').pop();
+			let adobeDCView = new AdobeDC.View({clientId: ADOBE_KEY, divId: divid });
+			adobeDCView.previewFile({
+			content:{location: {url:pdf}},
+			metaData:{fileName: filename}
+			});
+		}
+
+
+		</script>
+	</body>
+</html>
