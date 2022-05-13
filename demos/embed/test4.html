@@ -1,0 +1,78 @@
+<!--
+Demos UI customization
+-->
+<html>
+
+<head>
+<style>
+body {
+	background-color: rgb(56, 241, 56);
+	padding: 30px;
+}
+
+#pdfDisplay {
+	height: 600px;
+	width: 80%;
+}
+
+#navLinks a { 
+	color: black;
+}
+</style>
+</head>
+
+<body>
+
+<h2>PDF Embed Demo</h2>
+
+<p id="navLinks" style="display:none">
+Select PDF: <a href="/pdfs/cat.pdf" class="pdflink">Cats</a> - <a href="/pdfs/dog.pdf" class="pdflink">Dogs</a>
+</p>
+
+<div id="pdfDisplay"></div>
+
+
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script>
+const ADOBE_KEY = '9861538238544ff39d37c6841344b78d';
+
+document.addEventListener('DOMContentLoaded', init, false);
+
+
+/*
+I need to wait for multiple things - the DOM and the PDF lib. By waiting for the dom first, then waiting for the pdf lib, 
+I figure I cover both. 
+*/
+function init() {
+	if (window.AdobeDC) preparePDFDisplay();
+	else {
+		document.addEventListener("adobe_dc_view_sdk.ready", () => preparePDFDisplay());
+	}
+
+
+}
+
+function preparePDFDisplay() {
+
+	let pdflinks = document.querySelectorAll('.pdflink');
+	pdflinks.forEach(l => {
+		l.addEventListener('click', loadPDF, false);
+	});
+	document.querySelector('#navLinks').style.display = null;
+}
+
+function loadPDF(e) {
+	e.preventDefault();
+	let pdf = e.target.href;
+	let name = pdf.split('/').pop();
+
+	let adobeDCView = new AdobeDC.View({clientId: ADOBE_KEY, divId: "pdfDisplay" });
+
+	adobeDCView.previewFile({
+		content:{location: {url: pdf}},
+		metaData:{fileName: name}
+	});
+}
+</script>
+</body>
+</html>
