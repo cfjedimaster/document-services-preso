@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Become a Document Superhero using Adobe PDF Services and Adobe Acrobat Sign</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<style>
+		.twocol {
+			display: grid;
+			grid-template-columns: 66% 33%;
+		}
+		</style>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="img/superhero.jpg" data-background-opacity="0.2">
+				<h2>Become a Document<br/>Superhero!</h2>
+				<p>Using Adobe PDF Services and Adobe Acrobat Sign</p>
+				</section>
+
+				<section>
+				<div class="twocol">
+				<div>
+				<h2>Me</h2>
+				<ul>
+				<li>Raymond Camden</li>
+				<li>Senior Developer Evangelist for Adobe, Document Services</li>
+				<li>raymondcamden.com</li>
+				<li>@raymondcamden (DMs are open!)</li>
+				</ul>
+				</div>
+				<div>
+				<img src="img/ray.jpg" style="max-width:70%">
+				</div>
+				</div>
+				</section>
+
+				<section>
+				<h2>Agenda</h2>
+				<ul>
+				<li class="fragment">Mile-high overview of offerings</li>
+				<li class="fragment">Details on usage</li>
+				<li class="fragment">A bit of code (Woot!)</li>
+				<li class="fragment">Resources</li>
+				</section>
+
+				<section>
+				<h2>The Offerings</h2>
+				<ul>
+				<li class="fragment">PDF Services</li>
+				<li class="fragment">Document Generation</li>
+				<li class="fragment">PDF Extract</li>
+				<li class="fragment">Adobe Acrobat Sign</li>
+				<li class="fragment">PDF Embed (free JavaScript library)</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Required Stuff</h2>
+				<ul>
+				<li class="fragment">For PDF Services, Document Generation, PDF Extract</li>
+				<li class="fragment">Free</li>
+				<li class="fragment">No credit card required</li>
+				<li class="fragment">Adobe ID required</li>
+				<li class="fragment">1k "transactions" over 6 months</li>
+				<li class="fragment"><a href="https://developer.adobe.com/document-services/homepage" target="_new">Click here...</a></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Required Code Stuff</h2>
+				<ul>
+				<li class="fragment">SDKs:
+					<ul>
+						<li class="fragment">Node.js</li>
+						<li class="fragment">.Net</li>
+						<li class="fragment">Java</li>
+						<li class="fragment">Python (Extract only currently)</li>
+					</ul>
+				</li>
+				<li class="fragment">REST API</li>
+				</ul>
+				</section>
+
+
+				<section>
+				<h2>PDF Services</h2>
+				<ul>
+				<li class="fragment">The "you want to do X with PDFs" service</li>
+				<li class="fragment">Anything related to creating, manipulating PDFs as well as exporting <i>from</i> PDFs</li>
+				<li class="fragment">Formally known as PDF Tools</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>PDF Services</h2>
+				<ul style="font-size:26px">
+				<li class="fragment">Create a PDF from Word, Powerpoint, Excel, text, images, static and dynamic HTML</li>
+				<li class="fragment">Export a PDF to Office, text, or images</li>
+				<li class="fragment">Combine PDFs (or specific pages) into one</li>
+				<li class="fragment">OCR a PDF</li>
+				<li class="fragment">Compress and Linearize a PDF</li>
+				<li class="fragment">Add a password or lock permissions (like print)</li>
+				<li class="fragment">Insert, replace, shift around, rotate, and remove pages</li>
+				<li class="fragment">Split a PDF by number of pages, ranges, or file count</li>
+				<li class="fragment">Get PDF properties</li>
+				</ul>
+				</section>
+
+				<section>
+					<h2>General Pseudo-Code Flow</h2>
+					<pre><code class="text" data-trim>
+					make a credentials object
+					create an execution context specific to your operation 
+						(merge pdf, ocr pdf, etc)
+					set your input
+					execute
+					save result
+					</code></pre>
+				</section>
+
+				<section>
+				<h2>Mostly Complete Sample</h2>
+				<pre><code class="javascript r-stretch" data-trim>
+		const credentials = PDFServicesSdk.Credentials
+			.serviceAccountCredentialsBuilder()
+			.fromFile('./pdftools-api-credentials.json')
+			.build();
+
+		const executionContext = 
+			PDFServicesSdk.ExecutionContext.create(credentials);
+		const ocrOperation = PDFServicesSdk.OCR.Operation.createNew();
+
+		// Set operation input from a source file.
+		const input = 
+			PDFServicesSdk.FileRef.createFromLocalFile('ocrInput.pdf', 
+			PDFServicesSdk.OCR.SupportedMediaTypes.pdf);
+		ocrOperation.setInput(input);
+
+		// Execute the operation and save the result.
+		ocrOperation.execute(executionContext)
+		.then(result => result.saveAsFile('ocrOutput.pdf'));
+				</code></pre>
+				</section>
+
+				<section>
+					<h3>Demo</h3>
+					<p>
+					<code>/demos/services/ocr_example.js</code>
+					</p>
+				</section>
+
+				<section>
+				<h2>PDF Services (More)</h2>
+				<ul>
+				<li class="fragment">Remember: Used to be PDF Tools</li>
+				<li class="fragment">Credential info can be passed in via methods</li>
+				<li class="fragment">You can chain (do OCR, do password protect)</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Document Generation</h2>
+				<ul>
+				<li class="fragment">Uses a Word document as a template</li>
+				<li class="fragment">Our API takes the document + your data</li>
+				<li class="fragment">Outputs a PDF (or Word) document</li>
+				</ul>
+				</section>
+
+				<section>
+					<img src="img/docgen1.png">
+				</section>
+				<section>
+					<img src="img/docgen2.png">
+				</section>
+				<section>
+				<pre><code class="json" data-trim>
+				{
+					"name":"Raymond Camden"
+				}
+				</code></pre>
+				</section>
+				<section>
+					<img src="img/magic.gif">
+				</section>
+				<section>
+					<img src="img/docgen3.png">
+				</section>
+
+				<section>
+				<h2>Document Generation</h2>
+				<ul>
+				<li class="fragment">Uses JSONata (https://jsonata.org/)</li>
+				<li class="fragment">Supports looping, conditionals, formatting functions</li>
+				<li class="fragment">"Your data" means anything</li>
+				</ul>
+				</section>
+
+				<section>
+					<h3>Demo</h3>
+					<aside class="notes">
+					open Word, blank document
+					name, title, salary, show condition
+					</aside>
+				</section>
+
+				<section>
+				<h2>Document Generation</h2>
+				<ul>
+				<li class="fragment"><a href="https://www.adobe.io/apis/documentcloud/dcsdk/doc-gen-api-template.html" target="_new">Bunch of templates</a></li>
+				<li class="fragment"><a href="https://documentcloud.adobe.com/dc-docgen-playground/index.html#/" target="_new">Cool online demo</a></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>PDF Extract API</h2>
+				<ul>
+				<li class="fragment">Powered by AI/ML and <a href="https://www.adobe.com/sensei.html" target="_new">Adobe Sensei</a></li>
+				<li class="fragment">Returns *incredibly* detailed information about a PDF document</li>
+				<li class="fragment">Can return images</li>
+				<li class="fragment">Can return tables as images, CSV, or XLSX</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Why?</h2>
+				<ul>
+				<li class="fragment">An electronic document is fundamentally better than a piece of paper<sup>*</sup></li>
+				<li class="fragment">Information can be "locked" inside the document</li>
+				<li class="fragment">PDF Extract exposes that data...</li>
+				<li class="fragment">Searching for text</li>
+				<li class="fragment">Searching for meaning</li>
+				<li class="fragment">Routing / Organizing / etc</li>
+				</ul>
+				</section>
+
+				<section>
+					<h3>Demo</h3>
+					<p>
+					<code>/demos/services/extract.js</code>
+					</p>
+				</section>
+
+				<section>
+				<h2>Adobe Acrobat Sign</h2>
+				<ul>
+				<li class="fragment">What it means as a consumer...</li>
+				<li class="fragment">What it means as a developer...</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Adobe Acrobat Sign - Consumer Signer</h2>
+				<ul>
+				<li class="fragment">Web-based signing experience</li>
+				<li class="fragment">Intelligent forms</li>
+				<li class="fragment">Mobile experience</li>
+				</ul>
+				</section>
+
+
+				<section>
+				<h2>Adobe Acrobat Sign - Consumer Initiator</h2>
+				<ul>
+				<li class="fragment">Web-based portal to manage documents</li>
+				<li class="fragment">Web-based portal to send out documents, check status, etc</li>
+				<li class="fragment">Good for ad hoc use cases</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Adobe Acrobat Sign - As a Developer</h2>
+				<ul>
+				<li class="fragment">APIs to automate creating documents</li>
+				<li class="fragment">APIs to send them off for signing</li>
+				<li class="fragment">APIs for complete management (remind folks, check status, etc)</li>
+				<li class="fragment">REST-based, easy to use</li>
+				<li class="fragment">Free trial</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Use Case Example:</h2>
+				<ul>
+				<li class="fragment">Document Generation API to create dynamic PDFs...</li>
+				<li class="fragment">That include places where a person needs to sign</li>
+				<li class="fragment">Use the Sign API to upload the document</li>
+				<li class="fragment">Use the Sign API to send it off for a signature</li>
+				</ul>
+				</section>
+
+
+				<section>
+				<h2>Resources</h2>
+				<ul>
+				<li class="fragment"><a href="https://developer.adobe.com/document-services/docs/overview/" target="_new">Document Services Docs</a></li>
+				<li class="fragment"><a href="https://community.adobe.com/t5/document-services-apis/bd-p/Document-Cloud-SDK" target="_new">Support Forum</a></li>
+				<li class="fragment">StackOverflow tags: 
+					<a href="https://stackoverflow.com/questions/tagged/adobe-documentgeneration" target="_new">adobe-documentgeneration</a>, 
+					<a href="https://stackoverflow.com/questions/tagged/adobe-embed-api" target="_new">adobe-embed-api</a>, 
+					<a href="https://stackoverflow.com/questions/tagged/adobe-pdfservices" target="_new">adobe-pdfservices</a>
+				</li>
+				<li class="fragment"><a href="https://medium.com/adobetech/tagged/adobe-document-cloud" target="_new">Blog</a></li>
+				<li class="fragment"><a href="https://www.youtube.com/playlist?list=PLcVEYUqU7VRe4sT-Bf8flvRz1XXUyGmtF" target="_new">Paper Clips</a></li>
+				<li class="fragment"><a href="https://opensource.adobe.com/acrobat-sign/developer_guide/index.html" target="_new">Adobe Sign Developer Guide</a></li>
+				</ul>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<img src="img/cat_qa.png">
+				</section>
+
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+				slideNumber:"c/t"
+			});
+		</script>
+	</body>
+</html>
+
+<!--
+Photo by <a href="https://unsplash.com/@yuliamatvienko?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Yulia Matvienko</a> on <a href="https://unsplash.com/s/photos/superhero?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  -->

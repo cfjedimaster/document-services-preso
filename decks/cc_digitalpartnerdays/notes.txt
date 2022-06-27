@@ -1,0 +1,17 @@
+Become a Document Superhero using Adobe PDF Services and Adobe Acrobat Sign
+
+In this technical deep dive, Raymond will introduce you to the devloper-centric features 
+of the Adobe PDF Services and Acrobat Sign. You'll learn how to build your own custom workflows to process, 
+optimize, and generate PDFs and documents all with SDKs built in multiple different languages. 
+
+You'll also see how to integrate electronic signatures into the process to build a complete and powerful; document workflow.
+
+
+Outline:
+Intro
+High level overview of everything
+then go into PDF Services
+show code, ocr example
+doc gen - high level
+extract - high level
+Sign - describe what it is and what dev options are available
