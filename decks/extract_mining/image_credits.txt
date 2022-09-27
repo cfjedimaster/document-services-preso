@@ -2,3 +2,19 @@ Mining Photo:
 
 Photo by <a href="https://unsplash.com/@dominik_photography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dominik Vanyi</a> on <a href="https://unsplash.com/s/photos/mining?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
+Happy Dog:
+
+Photo by <a href="https://unsplash.com/@joeyc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joe Caione</a> on <a href="https://unsplash.com/s/photos/happy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+Sad Dog:
+
+Photo by <a href="https://unsplash.com/@matthewhenry?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Matthew Henry</a> on <a href="https://unsplash.com/s/photos/sad?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+Sad Cat:
+
+Photo by <a href="https://unsplash.com/@spktwo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">George Bonev</a> on <a href="https://unsplash.com/s/photos/sad-cat?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+Happy Cat:
+
+Photo by <a href="https://unsplash.com/@kstonematheson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kate Stone Matheson</a> on <a href="https://unsplash.com/s/photos/happy-cat?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  

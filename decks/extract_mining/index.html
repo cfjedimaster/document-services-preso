@@ -23,6 +23,7 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+
 				<section data-background-image="img/mining.jpg" data-background-opacity="0.2">
 				<h1>Mining Electronic Documents</h1>
 				<h3>For Fun and Profit</h3>
@@ -32,7 +33,7 @@
 				<section>
 				<div class="twocol">
 				<div>
-				<h2>read.me</h2>
+				<h2>readmd.txt</h2>
 				<ul>
 				<li>Raymond Camden</li>
 				<li>Senior Developer Evangelist for Adobe</li>
@@ -46,13 +47,128 @@
 				</div>
 				</section>
 
+				<section data-background-image="img/happycat.jpg" data-background-opacity="0.2">
+					<h2>Good News</h2>
+					<ul>
+					<li class="fragment">PDFs are easy to store</li>
+					<li class="fragment">PDFs are easy to share</li>
+					<li class="fragment">PDFs are awesome (no, really!)</li>
+					</ul>
+					<aside class="notes">to be fair, all of the above apply to ALL e-docs
+					</aside>
+				</section>
+
+				<section data-background-image="img/sadcat.jpg" data-background-opacity="0.2">
+					<h2>Bad News</h2>
+					<ul>
+					<li class="fragment">Estimated 2.5 trillion PDFs</li>
+					<li class="fragment">According to highly paid consultants, 2.5T is a lot</li>
+					<li class="fragment">Data is safe, but "hidden" in documents</li>
+					</ul>
+					<aside class="notes">
+					</aside>
+				</section>
+
 				<section>
-				<h2>Agenda</h2>
+					<h2>Our Goal</h2>
+					<div class="r-stack">
+						<img src="img/sadcat.jpg" class="fragment">
+						<img src="img/happycat.jpg" class="fragment">
+					</div>
+					<p class="fragment"><i>Yes this is a completely gratuitous slide.</i></p>
+				</section>
+
+				<section>
+				<h2>How?</h2>
 				<ul>
-				<li class="fragment"></li>
+				<li class="fragment">Get "information" from the PDFs</li>
+				<li class="fragment">Analyze that "information"</li>
+				<li class="fragment">Combine that with the PDF</li>
 				</ul>
 				</section>
 
+				<section>
+				<h2>Getting Stuff from PDFs</h2>
+				<ul>
+				<li class="fragment">Text</li>
+				<li class="fragment">Styling Information</li>
+				<li class="fragment">Tables</li>
+				<li class="fragment">Images</li>
+				</ul>
+				<aside class="notes">
+				text is surprisingly complex - multiple columns, multiple pages, organization
+				</aside>
+				</section>
+
+				<section>
+				<div class="twocol">
+				<div>
+				<h2>Solution</h2>
+				<ul>
+				<li>Adobe Document Services</li>
+				<li>APIs related to Documents (duh)</li>
+				<li>Created by PDF Wizards</li>
+				</ul>
+				</div>
+				<div>
+				<img src="img/docservices.png">
+				</div>
+				</section>
+
+				<section>
+				<h2>Adobe Document Services</h2>
+				<ul>
+				<li class="fragment">PDF Services</li>
+				<li class="fragment">Document Generation</li>
+				<li class="fragment">PDF Embed</li>
+				<li class="fragment">Acrobat Sign</li>
+				<li class="fragment" style="text-decoration: underline;">PDF Extract</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Details</h2>
+				<ul>
+				<li class="fragment">SDKs for Node, Java, .NET, Python<sup>*</sup></li>
+				<li class="fragment">REST API ✨</li>
+				<li class="fragment">Free trial (1K calls over 6 months)</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Code Process</h2>
+				<ol>
+				<li class="fragment">Get credentials (one time)</li>
+				<li class="fragment">Get the SDK (or use REST)</li>
+				<li class="fragment">Write code to extract crap from PDF x</li>
+				<li class="fragment">Automate the previous step</li>
+				<li class="fragment">Profit 🤑💰🤑</li>
+				</ol>
+				<p class="fragment" style="font-size: 0.5em; font-style: italic;">There may be a few steps missing between 4 and 5.</p>
+				</section>
+
+				<section>
+				<h2>For Today</h2>
+				<ul>
+				<li class="fragment">Node.js <span class="fragment">("Node.js Is Bad Ass Rock Star Tech")</span></li>
+				<li class="fragment">ColdFusion - Java
+					<ul>
+						<li><a href="https://github.com/tonyjunkes/pdfservices-java-sdk-cfml-samples" target="_new">Tony Junkes GH repo</a></li>
+					</ul>
+				</li>
+				<li class="fragment">Consider REST</li>
+				</ul>
+
+				</section>
+
+<!--
+todo: show code sample
+run it, show json as a glob of crap
+show visualizer 
+
+then move on to doing shit
+start w/ just getting H1s or H2a
+-->
 
 			</div>
 		</div>
