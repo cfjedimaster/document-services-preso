@@ -2,12 +2,11 @@ const PDFServicesSdk = require('@adobe/pdfservices-node-sdk');
 const fs = require('fs');
 
 const OUTPUT_ZIP = './output.zip';
-//we remove this, but in case of error, check
 if(fs.existsSync(OUTPUT_ZIP)) fs.unlinkSync(OUTPUT_ZIP);
 
 const credentials = PDFServicesSdk.Credentials
 		.serviceAccountCredentialsBuilder()
-		.fromFile('pdftools-api-credentials.json')
+		.fromFile('pdfservices-api-credentials.json')
 		.build();
 
 // Create an ExecutionContext using credentials

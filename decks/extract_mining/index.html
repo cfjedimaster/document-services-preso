@@ -127,6 +127,17 @@
 				</section>
 
 				<section>
+				<h2>Adobe PDF Extract</h2>
+				<ul>
+				<li class="fragment">Uses Adobe Sensei (ML, AI, Skynet, etc)</li>
+				<li class="fragment">Extracts text, tables, images, styling information</li>
+				<li class="fragment">Tables can be CSV, XLSX, or images</li>
+				<li class="fragment">Extracts document structure</li>
+				<li class="fragment">Auto OCRs when necessary</li>
+				</ul>
+				</section>
+
+				<section>
 				<h2>Details</h2>
 				<ul>
 				<li class="fragment">SDKs for Node, Java, .NET, Python<sup>*</sup></li>
@@ -158,15 +169,81 @@
 				</li>
 				<li class="fragment">Consider REST</li>
 				</ul>
-
 				</section>
 
-<!--
-todo: show code sample
-run it, show json as a glob of crap
-show visualizer 
+				<section>
+				<h1>Code Time!</h1>
+				<img src="img/cat_typing.gif">
+				</section>
 
+				<section>
+				<h2>General Pseudo-Code Flow</h2>
+				<pre><code class="text" data-trim>
+make a credentials object
+create an execution context specific to your operation 
+	(extract pdf, ocr pdf, etc)
+set your input and options
+execute
+save result
+				</code></pre>
+				</section>
+
+				<section>
+					<p title="you rock">Ray, show /demos/extract/extract.js</p>
+					<aside class="notes">
+Run extract.js, 
+show the zip file 
+now show the unzipped folder 
+show the table, first csv is a good one
+show json 
+format it
+					</aside>
+				</section>
+
+				<section>
+					<img src="img/cat-thats-a-lot.jpg">
+				</section>
+
+				<section>
+				<h2>What It Means</h2>
+				<ul>
+				<li class="fragment"><a href="https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/howtos/extract-api/" target="_new">Docs</a></li>
+				<li class="fragment">JSONSchema (ray, if you didn't click it in the previous link, do so)</li>
+				<li class="fragment"><a href="https://documentcloud.adobe.com/dc-visualizer-app/index.html" target="_new">Visualizer</a></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>NOW WHAT?</h2>
+				<p class="fragment">
+				I don't know - thanks for showing up - any questions?
+				</p>
+				</section>
+
+				<section>
+				<h2>Start Simple</h2>
+				<ul>
+				<li class="fragment">Get the text</li>
+				<li class="fragment">Get the headers</li>
+				</ul>
+				</section>
+
+				<section>
+					<p title="you rock">Ray, show /demos/extract/text.js</p>
+					<p title="you rock">Ray, show /demos/extract/headers.js</p>
+					<aside class="notes">
+Read in the JSON and print out the result
+Talk about search engine support
+					</aside>
+				</section>
+
+
+
+
+<!--
 then move on to doing shit
+
+show getting text
 start w/ just getting H1s or H2a
 -->
 
