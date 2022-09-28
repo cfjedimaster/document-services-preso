@@ -1,5 +1,6 @@
 {
   "name": "services",
+  "type":"module",
   "version": "1.0.0",
   "description": "",
   "main": "ocr_example.js",
@@ -10,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@adobe/pdfservices-node-sdk": "^2.0.0"
+    "@adobe/pdfservices-node-sdk": "^2.0.0",
+    "csvtojson": "^2.0.10",
+    "nanoid": "^4.0.0",
+    "node-stream-zip": "^1.15.0"
   }
 }

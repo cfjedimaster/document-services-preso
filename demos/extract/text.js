@@ -1,4 +1,5 @@
-let data = require('./output/structuredData.json');
+import fs from 'fs';
+let data = JSON.parse(fs.readFileSync('./output/structuredData.json', 'utf8'));
 
 let text = data.elements.reduce((text, el) => {
 	if(el.Text) text += el.Text + '\n';

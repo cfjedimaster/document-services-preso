@@ -1,32 +1,33 @@
-const PDFServicesSdk = require('@adobe/pdfservices-node-sdk');
-const fs = require('fs');
+import PDFServicesSDK from '@adobe/pdfservices-node-sdk';
+import fs from 'fs';
+
 
 const OUTPUT_ZIP = './output.zip';
 if(fs.existsSync(OUTPUT_ZIP)) fs.unlinkSync(OUTPUT_ZIP);
 
-const credentials = PDFServicesSdk.Credentials
+const credentials = PDFServicesSDK.Credentials
 		.serviceAccountCredentialsBuilder()
 		.fromFile('pdfservices-api-credentials.json')
 		.build();
 
 // Create an ExecutionContext using credentials
-const executionContext = PDFServicesSdk.ExecutionContext.create(credentials);
+const executionContext = PDFServicesSDK.ExecutionContext.create(credentials);
 
 // Build extractPDF options
-const options = new PDFServicesSdk.ExtractPDF.options.ExtractPdfOptions.Builder()
-	   	.addElementsToExtract(PDFServicesSdk.ExtractPDF.options.ExtractElementType.TEXT, PDFServicesSdk.ExtractPDF.options.ExtractElementType.TABLES)
+const options = new PDFServicesSDK.ExtractPDF.options.ExtractPdfOptions.Builder()
+	   	.addElementsToExtract(PDFServicesSDK.ExtractPDF.options.ExtractElementType.TEXT, PDFServicesSDK.ExtractPDF.options.ExtractElementType.TABLES)
         .addElementsToExtractRenditions(
-				PDFServicesSdk.ExtractPDF.options.ExtractRenditionsElementType.FIGURES,
-				PDFServicesSdk.ExtractPDF.options.ExtractRenditionsElementType.TABLES
+				PDFServicesSDK.ExtractPDF.options.ExtractRenditionsElementType.FIGURES,
+				PDFServicesSDK.ExtractPDF.options.ExtractRenditionsElementType.TABLES
 		)
-		.addTableStructureFormat(PDFServicesSdk.ExtractPDF.options.TableStructureType.CSV)
+		.addTableStructureFormat(PDFServicesSDK.ExtractPDF.options.TableStructureType.CSV)
       	.build()
 
 // Create a new operation instance.
-const extractPDFOperation = PDFServicesSdk.ExtractPDF.Operation.createNew(),
-	input = PDFServicesSdk.FileRef.createFromLocalFile(
+const extractPDFOperation = PDFServicesSDK.ExtractPDF.Operation.createNew(),
+	input = PDFServicesSDK.FileRef.createFromLocalFile(
 		'PlanetaryScienceDecadalSurvey.pdf',
-		PDFServicesSdk.ExtractPDF.SupportedSourceFormat.pdf
+		PDFServicesSDK.ExtractPDF.SupportedSourceFormat.pdf
 	);
 
 extractPDFOperation.setInput(input);
