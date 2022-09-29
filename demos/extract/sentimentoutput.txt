@@ -1,0 +1,2 @@
+Sentiment rating (-1 is bad, 1 is good):
+0.15630235
