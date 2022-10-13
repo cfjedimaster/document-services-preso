@@ -6,7 +6,7 @@ Facts
 */
 
 import fs from 'fs';
-let data = JSON.parse(fs.readFileSync('./output/structuredData.json', 'utf8'));
+let data = JSON.parse(fs.readFileSync('./output_planetary/structuredData.json', 'utf8'));
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -37,6 +37,7 @@ import fetch from 'node-fetch';
 	});
 
 	let result = await req.json();
+
 	let facts = result[0].facts;
 	console.log(JSON.stringify(facts, null, '\t'));
 

@@ -26,7 +26,7 @@ const options = new PDFServicesSDK.ExtractPDF.options.ExtractPdfOptions.Builder(
 // Create a new operation instance.
 const extractPDFOperation = PDFServicesSDK.ExtractPDF.Operation.createNew(),
 	input = PDFServicesSDK.FileRef.createFromLocalFile(
-		'PlanetaryScienceDecadalSurvey.pdf',
+		'sample.pdf',
 		PDFServicesSDK.ExtractPDF.SupportedSourceFormat.pdf
 	);
 

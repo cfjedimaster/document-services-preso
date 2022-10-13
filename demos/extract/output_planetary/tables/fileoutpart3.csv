@@ -1,0 +1,24 @@
+﻿SUMMARY OF ELEMENT TYPES  
+CATEGORY  ,ELEMENT TYPE  ,DESCRIPTION  
+Aside  ,Aside  ,Content which is not part of regular content flow of the document  
+Figure  ,Figure  ,"Non-reflowable constructs like graphs, images, flowcharts  "
+Footnote  ,Footnote  ,Footnote  
+Headings`  ,H  ,Beginning of heading  
+,H1  ,Heading Level 1  
+,H2  ,Heading Level 2  
+,etc  ,Heading Level X  
+List  ,L  ,Beginning of list  
+,Li  ,List Item  
+,Lbi  ,List Item label  
+,Lbody  ,List Item body  
+Paragraph  ,P  ,Paragraph  
+,ParagraphSpan  ,Denotes part of a paragraph. Reported when paragraph is broken (generally due to page break or column break)  
+Reference  ,Reference  ,Link  
+Section  ,Sect  ,Logical section of the document  
+StyleSpan  ,StyleSpan  ,Denotes difference in styling of text relative to the parent container  
+Sub  ,Sub  ,Single line of a multiline paragraph (e.g. addresses). Such paras are created in html using <br> inside <p> tags  
+Table  ,Table  ,Beginning of table  
+,TD  ,Table cell  
+,TH  ,Table header cell  
+,TR  ,Table row  
+Title  ,Title  ,Title of the document. This is the most prominent heading which can define the whole document.  
