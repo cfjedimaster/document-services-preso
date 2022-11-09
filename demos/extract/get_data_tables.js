@@ -1,4 +1,3 @@
-//const PDFServicesSdk = require('@adobe/pdfservices-node-sdk');
 import PDFServicesSDK from '@adobe/pdfservices-node-sdk';
 import fs from 'fs';
 
