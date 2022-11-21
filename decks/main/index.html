@@ -91,7 +91,7 @@
 
 		<section>
 		<img src="img/embed_home.png">
-		<a href="https://www.adobe.io/apis/documentcloud/dcsdk/pdf-embed.html" target="_new">www.adobe.io/apis/documentcloud/dcsdk/pdf-embed.html</a>
+		<a href="https://developer.adobe.com/document-services/apis/pdf-embed/" target="_new">developer.adobe.com/document-services/apis/pdf-embed/</a>
 		</section>
 
 		<section>
@@ -114,7 +114,8 @@
 
 		<section>
 		<pre><code class="html" data-trim>
-		&lt;script src="https://documentcloud.adobe.com/view-sdk/main.js"&gt;
+		&lt;script 
+		src="https://documentservices.adobe.com/view-sdk/viewer.js"&gt;
 		&lt;/script&gt;
 		</code></pre>
 		</section>
@@ -213,7 +214,7 @@ adobeDCView.previewFile({
 		<li class="fragment">Show/Hide UI</li>
 		<li class="fragment">Disable Print/Save</li>
 		<li class="fragment">Disable annotations/comments</li>
-		<li class="fragment"><a href="https://opensource.adobe.com/pdfembed-sdk-docs/howtos_ui.html#" target="_new">UI customization docs</a></li>
+		<li class="fragment"><a href="https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/howtos_ui/" target="_new">UI customization docs</a></li>
 		</ul>
 		</section>
 
@@ -264,8 +265,9 @@ adobeDCView.previewFile({
 		<h2>APIs</h2>
 		<ul>
 		<li class="fragment">Three core services</li>
+		<li class="fragment">Two services in EAP</li>
 		<li class="fragment">SDKs for Java, Node, .Net, and Python<sup>*</sup></li>
-		<li class="fragment">REST APIs</li>
+		<li class="fragment">REST APIs ✨</li>
 		<li class="fragment">Not free, 1K calls over 6 months</li>
 		<li class="fragment">Credentials required (2 parts)</li>
 		</ul>
@@ -319,7 +321,7 @@ save result
 		<pre><code class="javascript r-stretch" data-trim>
 const credentials = PDFServicesSdk.Credentials
 	.serviceAccountCredentialsBuilder()
-	.fromFile('./pdftools-api-credentials.json')
+	.fromFile('./pdfservices-api-credentials.json')
 	.build();
 
 const executionContext = 
@@ -400,7 +402,7 @@ ocrOperation.execute(executionContext)
 		<section>
 		<h2>Document Generation</h2>
 		<ul>
-		<li class="fragment"><a href="https://www.adobe.io/apis/documentcloud/dcsdk/doc-gen-api-template.html" target="_new">Bunch of templates</a></li>
+		<li class="fragment"><a href="https://developer.adobe.com/document-services/apis/doc-gen-api-template/" target="_new">Bunch of templates</a></li>
 		<li class="fragment"><a href="https://documentcloud.adobe.com/dc-docgen-playground/index.html#/" target="_new">Cool online demo</a></li>
 		</ul>
 		</section>
@@ -429,15 +431,17 @@ ocrOperation.execute(executionContext)
 		<section>
 		<h2>Resources</h2>
 		<ul>
-		<li class="fragment"><a href="https://opensource.adobe.com/pdftools-sdk-docs/" target="_new">Docs</a></li>
+		<li class="fragment"><a href="https://developer.adobe.com/document-services/docs/overview/" target="_new">Docs</a></li>
 		<li class="fragment"><a href="https://community.adobe.com/t5/document-services-apis/bd-p/Document-Cloud-SDK" target="_new">Support Forum</a></li>
 		<li class="fragment">StackOverflow tags: 
 			<a href="https://stackoverflow.com/questions/tagged/adobe-documentgeneration" target="_new">adobe-documentgeneration</a>, 
 			<a href="https://stackoverflow.com/questions/tagged/adobe-embed-api" target="_new">adobe-embed-api</a>, 
 			<a href="https://stackoverflow.com/questions/tagged/adobe-pdfservices" target="_new">adobe-pdfservices</a>
 		</li>
-		<li class="fragment"><a href="https://medium.com/adobetech/tagged/adobe-document-cloud" target="_new">Blog</a></li>
+		<li class="fragment"><a href="https://blog.developer.adobe.com/" target="_new">Blog</a></li>
+		<!--
 		<li class="fragment"><a href="https://adobe.com/go/papercuts" target="_new">Papercuts</a></li>
+		-->
 		</ul>
 		</section>
 
@@ -449,7 +453,7 @@ ocrOperation.execute(executionContext)
 	</div>
 </div>
 
-<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script src="https://documentservices.adobe.com/view-sdk/viewer.js"></script>
 <script src="dist/reveal.js"></script>
 <script src="plugin/notes/notes.js"></script>
 <script src="plugin/markdown/markdown.js"></script>

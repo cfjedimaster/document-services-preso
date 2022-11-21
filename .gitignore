@@ -3,3 +3,5 @@ node_modules
 private.key
 pdftools-api-credentials.json
 pdfservices-api-credentials.json
+.env
+.sealenv
