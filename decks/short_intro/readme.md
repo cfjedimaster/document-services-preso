@@ -1,3 +1,7 @@
+Notes pre-reInvent:
+Show Embed
+
+
 This isn't a deck per se, but an outline for a quick presentation I need to give, twice, that's meant to show a few services in a tight amount of time. 
 
 
