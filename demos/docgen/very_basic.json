@@ -1,0 +1,11 @@
+{
+	"name":"Raymond Camden",
+	"title":"Cat Herder",
+	"office":"Lafayette, Louisiana", 
+	"salary":"$1,000,000",
+	"benefits": [
+		{"name":"Free cats"}, 
+		{"name":"More cats"},
+		{"name":"Cool laptop"}
+	]
+}

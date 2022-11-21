@@ -9,7 +9,7 @@ const fs = require('fs');
 	console.log(`OCR ${input} to ${output}`);
 	//clean up existing output
 	if(fs.existsSync(output)) fs.unlinkSync(output);
-	await ocrPDF(input, output, './pdftools-api-credentials.json');
+	await ocrPDF(input, output, './pdfservices-api-credentials.json');
 	
 })();
 
