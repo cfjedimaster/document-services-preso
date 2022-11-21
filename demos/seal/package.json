@@ -1,0 +1,16 @@
+{
+  "name": "seal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "seal.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@adobe/jwt-auth": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "node-fetch": "^2.6.7"
+  }
+}
