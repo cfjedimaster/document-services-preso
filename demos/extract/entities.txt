@@ -1,0 +1,105 @@
+We discovered 21 entities:
+
+
+Name: Portable Network Graphics
+Link: http://www.wikidata.org/entity/Q178051
+Confidence: 0.77972853
+Type: skill
+
+Name: comma-separated values
+Link: http://www.wikidata.org/entity/Q935809
+Confidence: 0.86038005
+Type: skill
+
+Name: application programming interface
+Link: http://www.wikidata.org/entity/Q165194
+Confidence: 0.69442
+Type: skill
+
+Name: ISO
+Link: http://www.wikidata.org/entity/Q15028
+Confidence: 0.86905193
+Type: organization
+Location: 46.20151, 6.143889 
+
+Name: Microsoft Excel
+Link: http://www.wikidata.org/entity/Q11272
+Confidence: 0.8832674
+Type: skill
+
+Name: Portable Document Format
+Link: http://www.wikidata.org/entity/Q42332
+Confidence: 0.91249776
+Type: skill
+
+Name: UTF-8
+Link: http://www.wikidata.org/entity/Q193537
+Confidence: 0.93496585
+Type: skill
+
+Name: path
+Link: http://www.wikidata.org/entity/Q1415372
+Confidence: 0.71173584
+
+Name: table
+Link: http://www.wikidata.org/entity/Q496946
+Confidence: 0.7451881
+
+Name: enterprise resource planning
+Link: http://www.wikidata.org/entity/Q131508
+Confidence: 0.74926907
+Type: skill
+
+Name: customer relationship management
+Link: http://www.wikidata.org/entity/Q485643
+Confidence: 0.6981764
+
+Name: Pages
+Link: http://www.wikidata.org/entity/Q756852
+Confidence: 0.80526674
+Type: skill
+
+Name: JSON
+Link: http://www.wikidata.org/entity/Q2063
+Confidence: 0.8709913
+Type: skill
+
+Name: Reading
+Link: http://www.wikidata.org/entity/Q2318684
+Confidence: 0.8640298
+Type: location
+Location: 42.525555, -71.09583 
+
+Name: machine learning
+Link: http://www.wikidata.org/entity/Q2539
+Confidence: 0.68632233
+Type: skill
+
+Name: output
+Link: http://www.wikidata.org/entity/Q17148708
+Confidence: 0.5683283
+
+Name: Structured Information
+Link: undefined
+Confidence: 0.85
+Type: organization
+
+Name: NLP
+Link: undefined
+Confidence: 0.85
+Type: organization
+
+Name: RPA
+Link: undefined
+Confidence: 0.85
+Type: organization
+
+Name: Styling
+Link: undefined
+Confidence: 0.85
+Type: organization
+
+Name: Level X
+Link: undefined
+Confidence: 0.85
+Type: organization

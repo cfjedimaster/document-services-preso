@@ -1,0 +1,15 @@
+[Frank Howarth] employee or member of [Bishop Museum] 0.50514483
+[Frank Howarth] position held [scientist] 0.578642
+[Keck Observatory] number of employees [125] 0.92994434
+[Malama Mauna Kea] work relationship [Papa-hana-moku] 0.5751144
+[Amy Dryden] work relationship [Randy Hester] 0.6392461
+[Hale Pohaku] industry [kitchen and dining] 0.5099745
+[Hawaii Island Chamber of Commerce] industry [astronomy] 0.5000464
+[Patrick McCoy] position held [archeologist] 0.82694304
+[Hawaii Island Chamber of Commerce] organization locations [U.S.] 0.7669942
+[Randy Hester] work relationship [Amy Dryden] 0.6392461
+[Randy Hester] work relationship [Tim Duane] 0.86448514
+[Randy Hester] position held [Professors] 0.8932792
+[Papa-hana-moku] work relationship [Malama Mauna Kea] 0.5751144
+[Tim Duane] work relationship [Randy Hester] 0.86448514
+[Tim Duane] position held [Professors] 0.8535495
