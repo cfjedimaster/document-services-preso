@@ -5,3 +5,7 @@ pdftools-api-credentials.json
 pdfservices-api-credentials.json
 .env
 .sealenv
+output/*.pdf
+output/*.docx
+output/*.json
+output/*.xlsx
