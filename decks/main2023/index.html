@@ -94,10 +94,12 @@
 		<a href="https://developer.adobe.com/document-services/apis/pdf-embed/" target="_new">developer.adobe.com/document-services/apis/pdf-embed/</a>
 		</section>
 
+		<!--
 		<section>
 		<img src="img/console_home.png">
 		<a href="https://console.adobe.io" target="_new">console.adobe.io</a>
 		</section>
+		-->
 
 		<section>
 			<h1>Keys are HOST specific!</h1>
@@ -227,7 +229,7 @@ let adobeDCView = new AdobeDC.View({
 
 adobeDCView.previewFile({
 	content: { location: {url: "/pdfs/cat.pdf"} },
-    metaData: { fileName: "cat.pdf" }
+	metaData: { fileName: "cat.pdf" }
 }, 
 {
 	showDownloadPDF: false,
@@ -238,9 +240,11 @@ adobeDCView.previewFile({
 		</code></pre>
 		</section>
 
+		<!--
 		<section>
 			<h3><a href="/demos/embed/test3.html" target="_new">Demo</a></h3>
 		</section>
+		-->
 
 		<section>
 		<h2>Integrations and Events</h2>
@@ -262,7 +266,7 @@ adobeDCView.previewFile({
 		</section>
 
 		<section>
-		<h2>APIs</h2>
+		<h2>Offerings</h2>
 		<ul>
 		<li class="fragment">Six core services</li>
 		<li class="fragment">SDKs for Java, Node, .Net, and Python<sup>*</sup></li>
@@ -273,7 +277,7 @@ adobeDCView.previewFile({
 		</section>
 
 		<section>
-		<h2>Features</h2>
+		<h2>APIs</h2>
 		<ul>
 		<li class="fragment">PDF Services API</li>
 		<li class="fragment">Document Generation API</li>
@@ -451,6 +455,7 @@ POST {{ job url }}
 		<li>Dropbox</li>
 		<li>Azure Blob</li>
 		<li>Amazon S3</li>
+		<li><span style="color:red">Not Supported:</span> Extract, Split, Seal, Auto-Tag</li>
 		</ul>
 		</section>
 
@@ -531,6 +536,22 @@ POST {{ job url }}
 		</ul>
 		</section>
 
+		<section>
+			<h3><a href="https://documentservices.adobe.com/dc-visualizer-app/index.html" target="_new">Visualizer</a></h3>
+		</section>
+
+		<section>
+			<h3>Demo</h3>
+			<p>
+			Extracting all text, or just major headers.
+			</p>
+		</section>
+
+		<section>
+			<img src="img/over.jpeg">
+		</section>
+
+
 <!--
 Notes for Ray:
 Add ESeal, but maybe link to online demo for output 
@@ -541,16 +562,6 @@ Sign.... sigh
 
 When done, cut back on Embed
 -->
-		<section>
-			<h3>Demo</h3>
-			<p>
-			<code>/demos/services/extract.js</code>
-			</p>
-		</section>
-
-		<section>
-			<img src="img/over.jpeg">
-		</section>
 
 		<section>
 		<h2>Resources</h2>
