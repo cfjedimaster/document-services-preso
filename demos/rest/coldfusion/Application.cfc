@@ -11,6 +11,7 @@ component {
 		var system = createObject('java', 'java.lang.System');
 		application.CLIENT_ID = system.getProperty('CLIENT_ID');
 		application.CLIENT_SECRET = system.getProperty('CLIENT_SECRET');
+		application.SIGN_KEY = system.getProperty('SIGN_KEY');
 	
 	}
 }
