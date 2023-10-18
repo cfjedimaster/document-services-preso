@@ -650,7 +650,12 @@ POST {{ job url }}
 <script src="plugin/highlight/highlight.js"></script>
 <script>
 let ADOBE_KEY = '9861538238544ff39d37c6841344b78d';
-if(document.location.hostname.indexOf('github.io') >= 0) ADOBE_KEY = '91bc34a1a0f04ba2a9503b7e9318f94a';
+let pdfURL = '/pdfs/cat.pdf';
+
+if(document.location.hostname.indexOf('github.io') >= 0) {
+	ADOBE_KEY = '91bc34a1a0f04ba2a9503b7e9318f94a';
+	pdfURL = '/document-services-preso/pdfs/cat.pdf';
+}
 
 if (!window.AdobeDC) {
 	//we delay init Reveal till PDF Embed is ready
@@ -672,7 +677,7 @@ function init() {
 
 	deck.on('slidechanged', event => {
 		if(event.currentSlide.id && event.currentSlide.id === 'pdfembed1') {
-			showPDF('/pdfs/cat.pdf', 'pdfembed_div1');
+			showPDF(pdfURL, 'pdfembed_div1');
 		}
 	});
 
