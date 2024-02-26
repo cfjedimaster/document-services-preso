@@ -5,14 +5,16 @@ Also, you rock.
 
 <cfscript>
 function getAccessToken(clientId, clientSecret) {
-	var imsUrl = 'https://ims-na1.adobelogin.com/ims/token/v2?client_id=#arguments.clientId#&client_secret=#arguments.clientSecret#&grant_type=client_credentials&scope=openid,AdobeID,read_organizations';
+	var imsUrl = 'https://pdf-services-ue1.adobe.io/token';
 	var result = '';
-	
+
 	cfhttp(url=imsUrl, method='post', result='result') {
-		cfhttpparam(type='body', value='');
+		cfhttpparam(type='body', value='client_id=#arguments.clientId#&client_secret=#arguments.clientSecret#');
+		cfhttpparam(type='header', name='Content-Type', value='application/x-www-form-urlencoded');
 	};
 
 	result = deserializeJSON(result.fileContent);
+
 	// Also retrurns token_type and expires_in
 	return result.access_token;
 }
