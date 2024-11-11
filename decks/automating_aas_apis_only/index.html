@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+<title>Automating Document Processes with Adobe Acrobat Services</title>
+<style>
+.twocol {
+	display: grid;
+	grid-template-columns: 66% 33%;
+}
+</style>
+
+</head>
+
+<div class="reveal">
+	<div class="slides">
+
+		<section>
+			<h2>Automating Document Processes</h2>
+			<h3>with Adobe Acrobat Services</h3>
+		</section>
+
+		<section>
+		<h2>AKA</h2>
+		</section>
+
+		<section data-background-image="img/multi_colored_stars.gif">
+		<h1>
+		Doing Cool Stuff with Documents!!
+		</h1>
+		</section>
+
+		<section>
+		<p>
+		Slide/Demo Repo: github.com/cfjedimaster/document-services-preso
+		</p>
+		<img src="img/qr.png">
+		</section>
+
+		<section>
+		<div class="twocol">
+		<div>
+		<h2>read.me</h2>
+		<ul>
+		<li>Raymond Camden</li>
+		<li>Senior Developer Evangelist for Adobe</li>
+		<li>raymondcamden.com</li>
+		<li>Mastodon, BlueSky, Threads, MySpace, AIM, Prodigy</li>
+		</ul>
+		</div>
+		<div>
+		<img src="img/ray.jpg" style="max-width:80%">
+		</div>
+		</div>
+		</section>
+
+		<section>
+		<h2>Acrobat Services</h2>
+		<ul>
+		<li class="fragment">Viewing (plus more) PDFs on the Web</li>
+		<ul><li class="fragment">Free!</li></ul>
+		<li class="fragment">Manipulating (slice, dice, etc) PDFs on the Server</li>
+		<ul><li class="fragment">Not Free! (but free tier!)</li></ul>
+		</ul>
+		</section>
+
+		<section>
+		<h2>Acrobat Services - Getting Started</h2>
+		<ul>
+		<li class="fragment"><a href="https://developer.adobe.com/document-services/" target="_blank">developer.adobe.com/document-services/</a></li>
+		<li class="fragment">Get Credentials</li>
+		<li class="fragment">client id + client secret</li>
+		</ul>
+		</section>
+
+		<section>
+		<img src="img/creds1.jpg">
+		</section>
+
+		<section>
+		<img src="img/creds2.jpg">
+		</section>
+
+		<section>
+		<h2>APIs</h2>
+		<ul>
+		<li class="fragment">PDF Services API</li>
+		<li class="fragment">Document Generation API</li>
+		<li class="fragment">PDF Extract API</li>
+		<li class="fragment">PDF Accessibility Auto-Tag and Checker</li>
+		<li class="fragment">Electronic Seal</li>
+		<li class="fragment">Adobe Sign (different credentials/agreement)</li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>PDF Services</h2>
+		<ul>
+		<li class="fragment">Formally known as PDF Tools</li>
+		<li class="fragment">Everything related to PDF creation and manipulation</li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>PDF Services</h2>
+		<ul style="font-size:26px">
+		<li class="fragment">Create a PDF from Word, Powerpoint, Excel, text, images, static and dynamic HTML</li>
+		<li class="fragment">Export a PDF to Office, text, or images</li>
+		<li class="fragment">Combine PDFs (or specific pages) into one</li>
+		<li class="fragment">OCR a PDF</li>
+		<li class="fragment">Compress and Linearize a PDF</li>
+		<li class="fragment">Add a password or lock permissions (like print)</li>
+		<li class="fragment">Insert, replace, shift around, rotate, and remove pages</li>
+		<li class="fragment">Split a PDF by number of pages, ranges, or file count</li>
+		<li class="fragment">Get PDF properties</li>
+		<li class="fragment">Add watermark</li>
+		<li class="fragment">Get/Set form fields (BETA)</li>
+		</ul>
+		</section>
+
+		<section>
+			<h2>General API Pseudo-Code Flow</h2>
+			<pre><code class="text" data-trim>
+* Get your access token (with credentials)
+* Upload an asset 
+* Tell Adobe to do X with it 
+* Check for status 
+* Download result
+			</code></pre>
+			<p class="fragment">
+			You can also use cloud-storage files instead.
+			</p>
+		</section>
+
+		<section>
+		<h2>Get Access Token</h2>
+		<pre><code class="text" data-trim>
+POST https://pdf-services-ue1.adobe.io/token
+
+{
+	"client_id": "your client id",
+	"client_secret": "your client secret"
+}
+		</code></pre>
+		</section>
+
+		<section>
+			<h3>Demo</h3>
+			<p>
+			Get token demo
+			</p>
+		</section>
+
+		<section>
+		<h2>Create/Upload Asset</h2>
+		<pre><code class="text" data-trim>
+POST https://pdf-services-ue1.adobe.io/assets
+
+{
+	"mediaType":"mime type of asset"
+}
+		</code></pre>
+
+		<p class="fragment">
+		Result:
+		</p>
+
+
+<pre class="fragment"><code class="json" data-trim>
+{
+	"assetID": "urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718",
+	"uploadUri": "a unique url, special, with sparkles"
+}
+		</code></pre>
+		</section>
+
+		<section>
+			<h3>Demo</h3>
+			<p>
+			Create and upload asset
+			</p>
+		</section>
+
+		<section>
+		<h2>Do Something!</h2>
+		<pre class="fragment"><code class="text" data-trim>
+// Convert a document into PDF...
+POST https://pdf-services-ue1.adobe.io/operation/createpdf
+
+{
+	"assetID":"id from previous call",
+	"documentLanguage":"en-US"
+}
+		</code></pre>
+
+		<p class="fragment">
+		If you did it correctly, the location header has your "job" url.
+		</p>
+		</section>
+
+
+		<section>
+			<h3>Demo</h3>
+			<p>
+			Kick off a Create PDF job
+			</p>
+		</section>
+
+		<section>
+		<h2>Check the Job</h2>
+		<pre><code class="text" data-trim>
+POST {{ job url }}
+		</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Demo</h3>
+			<p>
+			Check the job status
+			</p>
+		</section>
+
+		<section>
+		<h2>Download the Bits</h2>
+		<p>
+		Just do it (no auth required, just hit the URL)
+		</section>
+
+		<section>
+			<h3>Demo</h3>
+			<p>
+			Get it!
+			</p>
+		</section>
+
+		<section>
+		<h2>Recap</h2>
+		<ol>
+		<li class="fragment">Exchange creds for Access Token</li>
+		<li class="fragment">Create and upload asset (not required)</li>
+		<li class="fragment">Start a job</li>
+		<li class="fragment">Check status</li>
+		<li class="fragment">Download</li>
+		<li class="fragment">And repeat...</li>
+		</ol>
+		</section>
+
+		<section>
+		<h2>External Support</h2>
+		<ul>
+		<li>Sharepoint</li>
+		<li>Dropbox</li>
+		<li>Azure Blob</li>
+		<li>Amazon S3</li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>External Support</h2>
+		<ol>
+		<li class="fragment">Exchange creds for Access Token</li>
+		<li class="fragment">Create links for input/output<sup>*</sup></li>
+		<li class="fragment">Start a job</li>
+		<li class="fragment">Check status (maybe...)</li>
+		<li class="fragment">And repeat...</li>
+		</ol>
+		</section>
+
+		<section>
+		<h2>Webhook Support</h2>
+		<ul>
+		<li><a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/" target="_new">Docs</a></li>
+		<li><a href="https://blog.developer.adobe.com/introducing-webhook-support-in-acrobat-services-7d0606d1d35a" target="_new">Blog post</a></li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>PDF Services (More)</h2>
+		<ul>
+		<li class="fragment">Remember: Used to be PDF Tools</li>
+		<li class="fragment">You can chain (do OCR, do password protect)</li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>Document Generation</h2>
+		<ul>
+		<li class="fragment">Dynamic document creation at scale</li>
+		<li class="fragment">Uses a Word document as a template</li>
+		<li class="fragment">Our API takes the document + your data</li>
+		<li class="fragment">Outputs a PDF (or Word)</li>
+		</ul>
+		</section>
+
+		<section>
+			<img src="img/docgen1.png">
+		</section>
+		<section>
+			<img src="img/docgen2.png">
+		</section>
+		<section>
+		<pre><code class="json" data-trim>
+		{
+			"name":"Raymond Camden"
+		}
+		</code></pre>
+		</section>
+		<section>
+			<img src="img/docgen3.png">
+		</section>
+
+		<section>
+		<h2>Document Generation</h2>
+		<ul>
+		<li class="fragment">Uses JSONata (https://jsonata.org/)</li>
+		<li class="fragment">Supports looping, conditionals, formatting functions</li>
+		<li class="fragment">"Your data" means anything</li>
+		</ul>
+		</section>
+
+		<section>
+			<h3>Demo</h3>
+			<aside class="notes">
+			open Word, blank document
+			name, title, salary, show condition
+			</aside>
+		</section>
+
+		<section>
+		<h2>Document Generation</h2>
+		<ul>
+		<li class="fragment"><a href="https://developer.adobe.com/document-services/apis/doc-gen-api-template/" target="_new">Bunch of templates</a></li>
+		<li class="fragment"><a href="https://documentcloud.adobe.com/dc-docgen-playground/index.html#/" target="_new">Cool online demo</a></li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>PDF Extract API</h2>
+		<ul>
+		<li class="fragment">Powered by AI/ML and <a href="https://www.adobe.com/sensei.html" target="_new">Adobe Sensei</a></li>
+		<li class="fragment">Returns *incredibly* detailed information about a PDF document</li>
+		<li class="fragment">Can return images</li>
+		<li class="fragment">Can return tables as images, CSV, or XLSX</li>
+		</ul>
+		</section>
+
+		<section>
+			<h3><a href="https://documentservices.adobe.com/dc-visualizer-app/index.html" target="_new">Visualizer</a></h3>
+		</section>
+
+		<section>
+			<h3>Demo</h3>
+			<p>
+			Extracting all text, or just major headers.
+			</p>
+		</section>
+
+		<section>
+		<h2>PDF Accessibility Auto-Tag</h2>
+		<ul>
+		<li class="fragment">Powered by AI/ML and <a href="https://www.adobe.com/sensei.html" target="_new">Adobe Sensei</a></li>
+		<li class="fragment">Tag tables, paragraphs, lists, and headings</li>
+		<li class="fragment">Identifies reading order</li>
+		<li class="fragment">Generates a report (XLS)</li>
+		<li class="fragment">Read this next bullet point in serious-mode Ray:</li>
+		<li class="fragment">Not meant to be a 100% solution</li>
+		</ul>
+		</section>
+
+		<section>
+			<h3><a href="https://acrobatservices.adobe.com/dc-accessibility-playground/main.html" target="_new">Demo</a></h3>
+		</section>
+
+
+		<section>
+		<h2>Electronic Seal API</h2>
+		<ul>
+		<li class="fragment">"Seals" a PDF (you're welcome)</li>
+		<li class="fragment">Marks an "organization" as having generated a document</li>
+		<li class="fragment">If signing a PDF is person X, a seal is company Y</li>
+		<li class="fragment">Works with a Trust Service Provider (TSP)</li>
+		<li class="fragment">And optionally a Timestamping Authority (TSA)</li>
+		</ul>
+		</section>
+
+		<section>
+			<img src="img/seal.webp">
+		</section>
+
+		<section>
+			<h3><a href="https://acrobatservices.adobe.com/dc-eseal-playground/index.html" target="_new">Demo</a></h3>
+		</section>
+
+		<section>
+			<h2>More Stuff</h2>
+			<ul>
+			<li><a href="https://developer.adobe.com/document-services/" target="_new">Main Site</a></li>
+			<li><a href="https://community.adobe.com/t5/document-services-apis/bd-p/Document-Cloud-SDK?page=1&sort=latest_replies&filter=all" target="_new">Support Forums</a></li>
+			</ul>
+		</section>
+
+		<!--
+		<section>
+		<h2>Acrobat Sign API</h2>
+		<ul>
+		<li class="fragment">E-Signature solution</li>
+		<li class="fragment">Allows automation</li>
+		<li class="fragment">OAuth (User initiated)</li>
+		<li class="fragment">Server based</li>
+		</ul>
+		</section>
+
+		<section>
+			<img src="img/sign1.png">
+		</section>
+
+		<section>
+			<img src="img/sign2.png">
+		</section>
+
+		<section>
+			<h3><a href="https://secure.na1.adobesign.com/public/docs/restapi/v6" target="_new">REST Docs</a></h3>
+		</section>
+
+		<section>
+			<h3>Demo</h3>
+			<p>
+			Send off for agreement...
+			</p>
+		</section>
+
+		<section>
+			<img src="img/sign3.png">
+		</section>
+
+		<section>
+			<img src="img/over.jpeg">
+		</section>
+		-->
+
+		<section>
+		<h2>Automation Demo 1</h2>
+		<ul>
+		<li class="fragment">Acrobat Services connector</li>
+		<li class="fragment">Requires Premium account</li>
+		<li class="fragment">Not *quite* as efficient as raw HTTP calls</li>
+		<li class="fragment">Search for "adobe pdf"</li>
+		</ul>
+		</section>
+
+		<section>
+		<h2>Automation Demo 2</h2>
+		<ul>
+		<li class="fragment">Pipedream</li>
+		<li class="fragment">No "built in" support</li>
+		<li class="fragment">Way more flexible (imo) than PowerAutomate</li>
+		</ul>
+		</section>
+
+		<section>
+			<h2>Questions?</h2>
+			<img src="img/cat_qa.png">
+		</section>
+
+	</div>
+</div>
+
+<script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+let ADOBE_KEY = '9861538238544ff39d37c6841344b78d';
+let pdfURL = '/pdfs/cat.pdf';
+
+if(document.location.hostname.indexOf('github.io') >= 0) {
+	ADOBE_KEY = '91bc34a1a0f04ba2a9503b7e9318f94a';
+	pdfURL = '/document-services-preso/pdfs/cat.pdf';
+}
+
+if (!window.AdobeDC) {
+	//we delay init Reveal till PDF Embed is ready
+	document.addEventListener("adobe_dc_view_sdk.ready", () => init());
+}
+
+function init() {
+
+	let deck = new Reveal({
+	plugins: [  ]
+	})
+	deck.initialize({
+		progress:true,
+		slideNumber:"c/t",
+		hash:true,
+		 pdfSeparateFragments: false ,
+		plugins: [ RevealHighlight ]
+	});
+
+	deck.on('slidechanged', event => {
+		if(event.currentSlide.id && event.currentSlide.id === 'pdfembed1') {
+			showPDF(pdfURL, 'pdfembed_div1');
+		}
+	});
+
+}
+
+function showPDF(pdf, divid) {
+	let filename = pdf.split('/').pop();
+	let adobeDCView = new AdobeDC.View({clientId: ADOBE_KEY, divId: divid });
+	adobeDCView.previewFile({
+	content:{location: {url:pdf}},
+	metaData:{fileName: filename}
+	});
+}
+</script>
+</head>
+</html>
