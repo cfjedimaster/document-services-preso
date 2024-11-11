@@ -74,6 +74,6 @@ async function uploadFile(url, filePath, mediaType) {
 	let uploadedAsset = await getUploadData('application/vnd.openxmlformats-officedocument.wordprocessingml.document', accessToken, CLIENT_ID);
 	
 	await uploadFile(uploadedAsset.uploadUri, '../../../pdfs/cats.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-	console.log('Source PDF Uploaded.');
+	console.log('Source doc uploaded.');
 
 })();
